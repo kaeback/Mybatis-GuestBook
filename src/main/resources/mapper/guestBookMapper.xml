@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.dao.GuestBookMapper">
+    <!--  방명록 등록  -->
+    <insert id="saveGuestBook">
+        <selectKey keyProperty="guestbook_id" resultType="long" order="BEFORE">
+            select seq_guestbook from dual
+        </selectKey>
+        insert into guestbook (
+            guestbook_id,
+            contents,
+            username,
+            password
+        ) values (
+            #{guestbook_id},
+            #{contents},
+            #{username},
+            #{password}
+        )
+    </insert>
+
+    <!--  방명록 전체 목록  -->
+    <select id="findAllGuestBooks" resultType="guestbook">
+        select * from guestbook
+    </select>
+
+    <!--  방명록 읽기  -->
+    <select id="findGuestBook" resultType="guestbook">
+        select * from guestbook where guestbook_id = #{guestbook_id}
+    </select>
+
+    <!--  방명록 수정  -->
+    <update id="updateGuestBook">
+        update guestbook
+        <set>
+            contents = #{contents}
+        </set>
+        where guestbook_id = #{guestbook_id}
+    </update>
+
+    <!--  방명록 삭제  -->
+    <delete id="removeGuestBook">
+        delete from guestbook where guestbook_id = #{guestbook_id}
+    </delete>
+</mapper>
