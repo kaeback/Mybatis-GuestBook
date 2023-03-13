@@ -7,6 +7,14 @@ public class GuestBook {
     private String password;
     private String created_time;
 
+    public GuestBook() {}
+
+    public GuestBook(String contents, String username, String password) {
+        this.contents = contents;
+        this.username = username;
+        this.password = password;
+    }
+
     public Long getGuestbook_id() {
         return guestbook_id;
     }

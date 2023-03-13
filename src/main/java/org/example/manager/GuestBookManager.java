@@ -13,6 +13,11 @@ public class GuestBookManager {
         dao.saveGuestBook(guestBook);
     }
 
+    // 방명록 읽기
+    public GuestBook findGuestBook(Long guestbook_id) {
+        return dao.findGuestBook(guestbook_id);
+    }
+
     // 방명록 전체 목록
     public List<GuestBook> findAllGuestBooks() {
         return dao.findAllGuestBooks();
